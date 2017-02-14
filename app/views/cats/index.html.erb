@@ -1,0 +1,8 @@
+<h1>All the Cats</h1>
+
+<ul>
+  <% @cats.each do |cat| %>
+   <a href = "/cats/<%=cat.id%>"><%= cat.name %></a>
+ <% end %>
+    <!-- <%#= render @cats %> -->
+</ul>
