@@ -17,7 +17,13 @@
   </li>
 </ul> -->
 
-<table>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+
+<table style="width:50%">
   <thead>
     <tr>
       <th>Color</th>
@@ -35,5 +41,23 @@
       <td><%= @cat.age %></td>
       <td><%= @cat.description %></td>
     </tr>
+  </tbody>
+</table>
+
+<h4>Rentals</h4>
+<table style="width:50%">
+  <thead>
+    <tr>
+      <th>Start Date</th>
+      <th>End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cat.cat_rental_requests.order(:start_date).each do |request| %>
+      <tr>
+        <td> <%= request.start_date %> </td>
+        <td> <%= request.end_date %> </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
