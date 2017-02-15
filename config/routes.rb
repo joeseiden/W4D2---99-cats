@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :cats, only: [:index, :show, :new, :create, :update, :edit]
 
-  resources :cat_rental_requests, only: [:new]
+  resources :cat_rental_requests, only: [:index, :new, :create]
 end
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".

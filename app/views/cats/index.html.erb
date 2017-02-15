@@ -3,6 +3,7 @@
 <ul>
   <% @cats.each do |cat| %>
    <a href = "/cats/<%=cat.id%>"><%= cat.name %></a>
+   <br>
  <% end %>
     <!-- <%#= render @cats %> -->
 </ul>
