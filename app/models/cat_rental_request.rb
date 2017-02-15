@@ -16,12 +16,16 @@ class CatRentalRequest < ActiveRecord::Base
   validates :cat_id, :start_date, :end_date, :status, presence: true
 
   validate :overlapping_approved_requests, :overlapping_pending_requests
-
-
+  validate :start_before_end
 
   belongs_to :cat
 
-  # private
+  def approve!
+    self.status = "APPROVED"
+
+  end
+
+  private
   def overlapping_requests
     overlapping_requests1 = CatRentalRequest.where(cat_id: self.cat_id, start_date: self.start_date..self.end_date).where.not(id: self.id)
     #.or(cat_id: self.cat_id, end_date: self.start_date..self.end_date)
@@ -44,5 +48,10 @@ class CatRentalRequest < ActiveRecord::Base
     end
   end
 
+  def start_before_end
+    if self.end_date < self.start_date
+      self.errors[:start] << "must be before end"
+    end
+  end
 
 end
